@@ -14,7 +14,7 @@ This repository contains the implementation of 2 tasks as given by company.
 - **ros2_control** and related plugins
 
 ## Setup
-![image](https://github.com/user-attachments/assets/877d53f1-d482-49c4-9e8b-384847ca115f)
+![image](https://drive.google.com/file/d/1Vhv7Y6WYol_J1OKm2VxVR3Wsv5PNvUAF/view?usp=sharing)
 
 ## TASK 1 : Robot arm with Robotiq gripper + Motion Planning (Moveit2)
 
