@@ -15,7 +15,10 @@ This repository contains the implementation of 2 tasks as given by company.
 
 ## Setup
 <img width="769" height="444" alt="Screenshot from 2026-01-11 12-33-15" src="https://github.com/user-attachments/assets/a488e9be-74c2-4f62-ba00-c2685fad4138" />
-
+<img width="769" height="444" alt="Screenshot from 2026-01-11 12-48-03" src="https://github.com/user-attachments/assets/a3a99fb7-9bb4-44d9-9354-ff2a61f9661e" />
+<img width="769" height="444" alt="Screenshot from 2026-01-11 12-33-19" src="https://github.com/user-attachments/assets/c21455eb-0d69-4b6f-83b9-1fc310d3ba7a" />
+<img width="1806" height="952" alt="image" src="https://github.com/user-attachments/assets/599f1fbb-e931-4969-af67-417929264164" />
+<img width="1475" height="785" alt="image" src="https://github.com/user-attachments/assets/266d1a1c-0705-428e-b87e-b89c5879f403" />
 
 ## TASK 1 : Robot arm with Robotiq gripper + Motion Planning (Moveit2)
 
