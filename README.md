@@ -106,6 +106,6 @@ Watch the video demonstrating the implementation of Single arm planning with mov
 [Watch Video](https://drive.google.com/file/d/1Y_UGj7euWUwUPLbSSBUvMNqmEwy80Kb3/view?usp=sharing)
 
 ## Video Demonstration (TASK 2)
-Watch the video demonstrating the implementation of Duak arm planning with Cartesian Controller:
+Watch the video demonstrating the implementation of Dual arm planning with Cartesian Controller:
 [Watch Video](https://drive.google.com/file/d/1KiJ8Zgyk8HmjuDJhHmEUsnXrvC-3C7LA/view?usp=sharing)
 
