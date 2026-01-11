@@ -1,0 +1,598 @@
+<?xml version="1.0" ?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dual_arm">
+    <xacro:include filename="$(find ur_description_pkg)/urdf/ros2_control_dual.xacro" />
+    <!-- <xacro:include filename="$(find robotiq_description)/urdf/robotiq_2f_85_gripper.urdf.xacro"/> -->
+
+    <link name="world">
+    </link>
+    <!-- support link -->
+    <!-- <link name="support_link">
+        <visual>
+            <geometry>
+            <box size="0.3 1.5 0.3"/>
+            </geometry>
+            <origin xyz="0 0 0.3"/>
+        </visual>
+
+        <collision>
+            <geometry>
+            <box size="0.6 0.6 0.6"/>
+            </geometry>
+            <origin xyz="0 0 0.3"/>
+        </collision>
+
+        <inertial>
+            <mass value="20.0"/>
+            <origin xyz="0 0 0.3"/>
+            <inertia
+            ixx="1.0" ixy="0" ixz="0"
+            iyy="1.0" iyz="0"
+            izz="1.0"/>
+        </inertial>
+    </link> -->
+
+<link name="triangular_mount">
+
+  <!-- Inertial properties -->
+  <inertial>
+    <!-- Center of mass (adjust if STL origin differs) -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="25.0"/>
+    <inertia
+      ixx="0.58"
+      ixy="0.0"
+      ixz="0.0"
+      iyy="0.96"
+      iyz="0.0"
+      izz="0.65"/>
+  </inertial>
+
+  <!-- Visual -->
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/prism/triangular.stl"
+            scale="0.001 0.001 0.001"/>
+    </geometry>
+    <!-- <material name="grey">
+      <color rgba="0.6 0.6 0.6 1.0"/>
+    </material> -->
+  </visual>
+
+  <!-- Collision -->
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/prism/triangular.stl"
+            scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+
+</link>
+
+    
+<!-- left arm links -->
+<link name="base_link_l">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/base_link.stl"/>
+    </geometry>
+    <material name="">
+      <color rgba="0.239 0.239 0.239 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/base_link.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="15.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.5" ixy="0.0" ixz="0.0"
+             iyy="0.5" iyz="0.0"
+             izz="0.5"/>
+  </inertial>
+</link>
+
+<link name="link_1_l">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_1.stl"/>
+    </geometry>
+    <material name="l1">
+      <color rgba="0.86 0.85 0.81 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_1.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="5.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.1" ixy="0.0" ixz="0.0"
+             iyy="0.1" iyz="0.0"
+             izz="0.1"/>
+  </inertial>
+</link>
+
+<link name="link_2_l">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_2.stl"/>
+    </geometry>
+    <material name="l2">
+      <color rgba="0.86 0.85 0.81 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_2.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="4.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.08" ixy="0.0" ixz="0.0"
+             iyy="0.08" iyz="0.0"
+             izz="0.08"/>
+  </inertial>
+</link>
+
+<link name="link_3_l">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_3.stl"/>
+    </geometry>
+    <material name="l3">
+      <color rgba="0.86 0.85 0.81 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_3.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="3.5"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.06" ixy="0.0" ixz="0.0"
+             iyy="0.06" iyz="0.0"
+             izz="0.06"/>
+  </inertial>
+</link>
+
+<link name="link_4_l">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_4.stl"/>
+    </geometry>
+    <material name="l4">
+      <color rgba="0.86 0.85 0.81 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_4.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="3.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.05" ixy="0.0" ixz="0.0"
+             iyy="0.05" iyz="0.0"
+             izz="0.05"/>
+  </inertial>
+</link>
+
+<link name="link_5_l">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_5.stl"/>
+    </geometry>
+    <material name="l5">
+      <color rgba="0.86 0.85 0.81 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_5.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="2.5"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.04" ixy="0.0" ixz="0.0"
+             iyy="0.04" iyz="0.0"
+             izz="0.04"/>
+  </inertial>
+</link>
+
+<link name="link_6_l">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_6.stl"/>
+    </geometry>
+    <material name="l6">
+      <color rgba="0.239 0.239 0.239 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_6.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="2.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.03" ixy="0.0" ixz="0.0"
+             iyy="0.03" iyz="0.0"
+             izz="0.03"/>
+  </inertial>
+</link>
+
+<!-- right arm links -->
+<link name="base_link_r">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/base_link.stl"/>
+    </geometry>
+    <material name="">
+      <color rgba="0.239 0.239 0.239 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/base_link.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="15.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.5" ixy="0.0" ixz="0.0"
+             iyy="0.5" iyz="0.0"
+             izz="0.5"/>
+  </inertial>
+</link>
+
+<link name="link_1_r">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_1.stl"/>
+    </geometry>
+    <material name="l1">
+      <color rgba="0.86 0.85 0.81 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_1.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="5.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.1" ixy="0.0" ixz="0.0"
+             iyy="0.1" iyz="0.0"
+             izz="0.1"/>
+  </inertial>
+</link>
+
+<link name="link_2_r">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_2.stl"/>
+    </geometry>
+    <material name="l2">
+      <color rgba="0.86 0.85 0.81 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_2.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="4.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.08" ixy="0.0" ixz="0.0"
+             iyy="0.08" iyz="0.0"
+             izz="0.08"/>
+  </inertial>
+</link>
+
+<link name="link_3_r">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_3.stl"/>
+    </geometry>
+    <material name="l3">
+      <color rgba="0.86 0.85 0.81 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_3.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="3.5"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.06" ixy="0.0" ixz="0.0"
+             iyy="0.06" iyz="0.0"
+             izz="0.06"/>
+  </inertial>
+</link>
+
+<link name="link_4_r">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_4.stl"/>
+    </geometry>
+    <material name="l4">
+      <color rgba="0.86 0.85 0.81 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_4.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="3.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.05" ixy="0.0" ixz="0.0"
+             iyy="0.05" iyz="0.0"
+             izz="0.05"/>
+  </inertial>
+</link>
+
+<link name="link_5_r">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_5.stl"/>
+    </geometry>
+    <material name="l5">
+      <color rgba="0.86 0.85 0.81 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_5.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="2.5"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.04" ixy="0.0" ixz="0.0"
+             iyy="0.04" iyz="0.0"
+             izz="0.04"/>
+  </inertial>
+</link>
+
+<link name="link_6_r">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/visual/link_6.stl"/>
+    </geometry>
+    <material name="l6">
+      <color rgba="0.239 0.239 0.239 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ur_description_pkg)/meshes/crx10ial/collision/link_6.stl"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="2.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="0.03" ixy="0.0" ixz="0.0"
+             iyy="0.03" iyz="0.0"
+             izz="0.03"/>
+  </inertial>
+</link>
+
+<!-- previous mounting logic -->
+
+   <!-- base_joint fixes base_link to the environment -->
+    <!-- <joint name="support_to_world" type="fixed">
+        <parent link="world"/>
+        <child link="support_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="left_arm_mount" type="fixed">
+        <parent link="support_link"/>
+        <child link="base_link_l"/>
+        <origin
+            xyz="0.16 0.72 0.2"
+            rpy="0 1.57 -0.3"/>
+    </joint>
+
+     <joint name="right_arm_mount" type="fixed">
+        <parent link="support_link"/>
+        <child link="base_link_r"/>
+        <origin
+            xyz="0.16 -0.72 0.2"
+            rpy="0 1.57 0.3"/>
+    </joint> -->
+    <joint name="support_to_world" type="fixed">
+        <parent link="world"/>
+        <child link="triangular_mount"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="left_arm_mount" type="fixed">
+        <parent link="triangular_mount"/>
+        <child link="base_link_l"/>
+        <origin
+            xyz="0.11 0 0.22"
+            rpy="0 0.75 0"/>
+    </joint>
+
+    <joint name="right_arm_mount" type="fixed">
+        <parent link="triangular_mount"/>
+        <child link="base_link_r"/>
+        <origin
+            xyz="-0.11 0 0.22"
+            rpy="0 -0.75 0"/>
+    </joint>
+
+
+<!-- left arm joints -->
+  <joint name="joint_1_l" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.245"/>
+    <parent link="base_link_l"/>
+    <child link="link_1_l"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0943951023931953"/>
+  </joint>
+  <joint name="joint_2_l" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="link_1_l"/>
+    <child link="link_2_l"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0943951023931953"/>
+  </joint>
+  <joint name="joint_3_l" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.710"/>
+    <parent link="link_2_l"/>
+    <child link="link_3_l"/>
+    <axis xyz="0 -1 0"/>
+    <limit effort="0" lower="-4.71238898038469" upper="4.71238898038469" velocity="3.141592653589793"/>
+  </joint>
+  <joint name="joint_4_l" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="link_3_l"/>
+    <child link="link_4_l"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="0" lower="-3.3161255787892263" upper="3.3161255787892263" velocity="3.141592653589793"/>
+  </joint>
+  <joint name="joint_5_l" type="revolute">
+    <origin rpy="0 0 0" xyz="0.540 -0.150 0"/>
+    <parent link="link_4_l"/>
+    <child link="link_5_l"/>
+    <axis xyz="0 -1 0"/>
+    <limit effort="0" lower="-3.141592653589793" upper="3.141592653589793" velocity="3.141592653589793"/>
+  </joint>
+  <joint name="joint_6_l" type="revolute">
+    <origin rpy="0 0 0" xyz="0.160 0 0"/>
+    <parent link="link_5_l"/>
+    <child link="link_6_l"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="0" lower="-3.3161255787892263" upper="3.3161255787892263" velocity="3.141592653589793"/>
+  </joint>
+  <link name="base_l"/>
+  <joint name="base_link-base_l" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.245"/>
+    <parent link="base_link_l"/>
+    <child link="base_l"/>
+  </joint>
+  <link name="flange_l"/>
+  <joint name="joint_6-flange_l" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="link_6_l"/>
+    <child link="flange_l"/>
+  </joint>
+  <link name="tool0_l"/>
+  <joint name="link_6-tool0_l" type="fixed">
+    <origin rpy="3.141592653589793 -1.5707963267948966 0" xyz="0 0 0"/>
+    <parent link="flange_l"/>
+    <child link="tool0_l"/>
+  </joint>
+  
+  <!-- right arm joints -->
+  <joint name="joint_1_r" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.245"/>
+    <parent link="base_link_r"/>
+    <child link="link_1_r"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0943951023931953"/>
+  </joint>
+  <joint name="joint_2_r" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="link_1_r"/>
+    <child link="link_2_r"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0943951023931953"/>
+  </joint>
+  <joint name="joint_3_r" type="revolute">
+    <origin rpy="0 3.14 0" xyz="0 0 0.710"/>
+    <parent link="link_2_r"/>
+    <child link="link_3_r"/>
+    <axis xyz="0 -1 0"/>
+    <limit effort="0" lower="-4.71238898038469" upper="4.71238898038469" velocity="3.141592653589793"/>
+  </joint>
+  <joint name="joint_4_r" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="link_3_r"/>
+    <child link="link_4_r"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="0" lower="-3.3161255787892263" upper="3.3161255787892263" velocity="3.141592653589793"/>
+  </joint>
+  <joint name="joint_5_r" type="revolute">
+    <origin rpy="0 0 0" xyz="0.540 -0.150 0"/>
+    <parent link="link_4_r"/>
+    <child link="link_5_r"/>
+    <axis xyz="0 -1 0"/>
+    <limit effort="0" lower="-3.141592653589793" upper="3.141592653589793" velocity="3.141592653589793"/>
+  </joint>
+  <joint name="joint_6_r" type="revolute">
+    <origin rpy="0 0 0" xyz="0.160 0 0"/>
+    <parent link="link_5_r"/>
+    <child link="link_6_r"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="0" lower="-3.3161255787892263" upper="3.3161255787892263" velocity="3.141592653589793"/>
+  </joint>
+  <link name="base_r"/>
+  <joint name="base_link-base_r" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.245"/>
+    <parent link="base_link_r"/>
+    <child link="base_r"/>
+  </joint>
+  <link name="flange_r"/>
+  <joint name="joint_6-flange_r" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="link_6_r"/>
+    <child link="flange_r"/>
+  </joint>
+  <link name="tool0_r"/>
+  <joint name="link_6-tool0_r" type="fixed">
+    <origin rpy="3.141592653589793 -1.5707963267948966 0" xyz="0 0 0"/>
+    <parent link="flange_r"/>
+    <child link="tool0_r"/>
+  </joint>
+
+</robot>

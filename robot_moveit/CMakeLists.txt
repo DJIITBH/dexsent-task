@@ -9,6 +9,13 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(trajectory_msgs REQUIRED)
+find_package(action_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+# find_package(ament_index_cpp REQUIRED)
+
 find_package(moveit_ros_planning_interface REQUIRED)
 # cpp api of moveit
 find_package(custom_service REQUIRED)
@@ -16,10 +23,12 @@ find_package(ament_cmake_auto REQUIRED)
 
 find_package(rclcpp_action REQUIRED)
 find_package(rclcpp_components REQUIRED)
-find_package(action_msgs REQUIRED)
-find_package(visualization_msgs REQUIRED)
-find_package(geometry_msgs REQUIRED)
+
 find_package(trajectory_msgs REQUIRED)
+find_package(orocos_kdl REQUIRED)
+find_package(kdl_parser REQUIRED)
+find_package(Eigen3 REQUIRED)
+
 
 ament_auto_find_build_dependencies()
 
@@ -29,6 +38,40 @@ ament_auto_add_executable(simple_moveit_interface
   src/simple_moveit_interface.cpp)
 # Install the executable
 install(TARGETS simple_moveit_interface
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+ament_auto_add_executable(dual_arm_interface 
+  src/dual_arm_interface.cpp)
+# Install the executable
+install(TARGETS dual_arm_interface
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+add_executable(kdl_test_node src/kdl_test.cpp)
+ament_target_dependencies(kdl_test_node rclcpp)
+target_link_libraries(kdl_test_node
+  orocos-kdl
+)
+install(TARGETS
+  kdl_test_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+add_executable(cartesian_controller src/cartesian_controller.cpp)
+ament_target_dependencies(cartesian_controller 
+  rclcpp
+  trajectory_msgs
+  builtin_interfaces
+  std_msgs
+  # ament_index_cpp
+  kdl_parser)
+target_link_libraries(cartesian_controller
+  orocos-kdl
+    Eigen3::Eigen
+)
+install(TARGETS
+  cartesian_controller
   DESTINATION lib/${PROJECT_NAME}
 )
 

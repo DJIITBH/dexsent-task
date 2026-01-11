@@ -1,0 +1,35 @@
+ros2 launch ur_description_pkg dual_gazebo.launch.py
+ros2 run robot_moveit cartesian_controller
+
+ros2 topic pub --once /desired_pose std_msgs/msg/Float64MultiArray \
+"{data: [1.23, -0.15, 0.44, 0.91, -0.0, 0.39, -0.0,
+         -1.27, -0.15, 0.44, 0.91, -0.0, -0.39, 0.0]}"
+         
+ros2 topic pub --once /desired_pose std_msgs/msg/Float64MultiArray \
+"{data: [0.2, 1.149, 0.28, -0.66, -0.52, -0.02, 0.52,
+         -0.46, 1.179, 0.338, -0.7, 0.42, 0.113, 0.55]}"
+         
+home:
+tool0_l
+1.23, -0.15, 0.44, 0.91, -0.0, 0.39, -0.0,
+
+tool0_r
+-1.27, -0.15, 0.44, 0.91, -0.0, -0.39, 0.0
+
+ros2 topic pub --once /desired_pose std_msgs/msg/Float64MultiArray \
+"{data: [1.23, -0.15, 0.44, 0.91, -0.0, 0.39, -0.0,
+         -1.27, -0.15, 0.44, 0.91, -0.0, -0.39, 0.0]}"
+
+
+goal:
+tool0_l
+0.2, 1.149, 0.28, -0.66, -0.52, -0.02, 0.52
+
+tool0_r
+-0.46, 1.179, 0.338, -0.7, 0.42, 0.113, 0.55
+
+ros2 topic pub --once /desired_pose std_msgs/msg/Float64MultiArray \
+"{data: [0.2, 1.149, 0.28, -0.66, -0.52, -0.02, 0.52,
+         -0.46, 1.179, 0.338, -0.7, 0.42, 0.113, 0.55]}"
+         
+         

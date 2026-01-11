@@ -6,7 +6,7 @@
 
 void move_robot(const std::shared_ptr<rclcpp::Node> node)
 {
-    auto arm_move_group = moveit::planning_interface::MoveGroupInterface(node, "arm"); //node, 'name of move group'
+    auto arm_move_group = moveit::planning_interface::MoveGroupInterface(node, "robot_arm"); //node, 'name of move group'
     //access and send cmd and view status of particular move_group
 
     std::vector<double> arm_joint_goal {1.57,-0.8,0.0,0.0,0.0,0.0};
